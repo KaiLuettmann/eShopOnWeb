@@ -61,7 +61,7 @@ public class CachedCatalogItemServiceDecorator : ICatalogItemService
             }
             else
             {
-                _logger.LogInformation("Cache expired; removing {key} from local storage.");
+                _logger.LogInformation($"Cache expired; removing {key} from local storage.");
                 await _localStorageService.RemoveItemAsync(key);
             }
         }
