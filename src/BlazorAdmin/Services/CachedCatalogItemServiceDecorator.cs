@@ -74,7 +74,7 @@ public class CachedCatalogItemServiceDecorator : ICatalogItemService
 
     public async Task<CatalogItem> GetById(int id)
     {
-        return (await List()).FirstOrDefault(x => x.Id == id);
+        return (await ListPaged(10)).FirstOrDefault(x => x.Id == id);
     }
 
     public async Task<CatalogItem> Create(CreateCatalogItemRequest catalogItem)
