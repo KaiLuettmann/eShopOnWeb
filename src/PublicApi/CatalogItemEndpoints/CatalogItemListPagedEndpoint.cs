@@ -53,7 +53,7 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
 
         var items = await itemRepository.ListAsync(pagedSpec);
 
-        response.CatalogItems.AddRange(items.Select(_mapper.Map<CatalogItemDto>));
+        response.CatalogItems.AddRange(items.Select(item => _mapper.Map<CatalogItemDto>(item)));
         foreach (CatalogItemDto item in response.CatalogItems)
         {
             item.PictureUri = _uriComposer.ComposePicUri(item.PictureUri);
