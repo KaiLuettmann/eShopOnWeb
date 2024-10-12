@@ -14,6 +14,7 @@ public class CatalogItem : BaseEntity, IAggregateRoot
     public CatalogType? CatalogType { get; private set; }
     public int CatalogBrandId { get; private set; }
     public CatalogBrand? CatalogBrand { get; private set; }
+    public int TimesPurchased { get; private set; } = 0;
 
     public CatalogItem(int catalogTypeId,
         int catalogBrandId,
@@ -61,6 +62,11 @@ public class CatalogItem : BaseEntity, IAggregateRoot
             return;
         }
         PictureUri = $"images\\products\\{pictureName}?{new DateTime().Ticks}";
+    }
+
+    public void Purchased()
+    {
+        TimesPurchased++;
     }
 
     public readonly record struct CatalogItemDetails
