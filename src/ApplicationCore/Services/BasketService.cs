@@ -72,7 +72,7 @@ public class BasketService : IBasketService
         var userBasket = await _basketRepository.FirstOrDefaultAsync(userBasketSpec);
         if (userBasket == null)
         {
-            userBasket = new Basket(userName);
+            userBasket = new Basket(userName);           
             await _basketRepository.AddAsync(userBasket);
         }
         foreach (var item in anonymousBasket.Items)
