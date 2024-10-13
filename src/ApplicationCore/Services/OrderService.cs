@@ -46,6 +46,16 @@ public class OrderService : IOrderService
             return orderItem;
         }).ToList();
 
+        foreach (var item in items)
+        {
+            var catalogItem = await _itemRepository.GetByIdAsync(item.ItemOrdered.CatalogItemId);
+            if (catalogItem != null)
+            {
+                catalogItem.Purchase();
+                await _itemRepository.UpdateAsync(catalogItem);
+            }
+        }
+
         var order = new Order(basket.BuyerId, shippingAddress, items);
 
         await _orderRepository.AddAsync(order);
